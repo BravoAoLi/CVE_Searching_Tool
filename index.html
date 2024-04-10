@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>CVE Searching Tool</title>
+		<link rel="stylesheet" href="index.css" />
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<h2>CVE Searching Tool</h2>
+			</div>
+		</header>
+		<div class="container">
+			<!-- 搜索组件容器 -->
+			<div class="search-container">
+				<!-- 筛选功能区 -->
+				<div class="filter-options">
+					<label for="severity">Switching search preferences:</label>
+					<select id="searchMethodFilter">
+						<option value="cveid">CVE ID</option>
+						<option value="keyword">KEYWORDS</option>
+						<option value="cpe">CPE NAME</option>
+					</select>
+
+					<!-- 添加更多筛选条件，如CWE、CPE、关键字等 -->
+				</div>
+
+				<!-- 输入框 -->
+				<div class="search-input">
+					<input type="text" id="search-box" placeholder="Please enter what you want to search..." />
+					<!-- 动态搜索建议区域 -->
+					<div id="search-suggestions"></div>
+				</div>
+
+				<!-- 搜索按钮 -->
+				<button id="search-btn">Search</button>
+			</div>
+		</div>
+		<div class="filtration">
+			<div class="container">
+				<!-- 添加排序和过滤选项 -->
+				
+				<div class="sort-filter-options">
+					<!-- 日期范围筛选器 -->
+					<div class="date-range-filter">
+						<label for="start-date">Last updated date from:</label>
+						<input type="date" id="start-date" />
+						<label for="end-date">Last updated date ends:</label>
+						<input type="date" id="end-date" />
+					</div>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Description</th>
+							<th>Published Date</th>
+							<th>Last Modified</th>
+						</tr>
+					</thead>
+					<tbody id="search-results-container"></tbody>
+				</table>
+				<!-- 分页导航控件 -->
+				<div id="pagination">
+					<button id="prev-page">Page up</button>
+					<span id="current-page">1</span>/<span id="total-pages"></span>
+					<button id="next-page">Page down</button>
+				</div>
+			</div>
+		</div>
+		<!-- 模态框 HTML 结构 -->
+
+		<div class="modal fade" id="cveDetailsModal" tabindex="-1" role="dialog" aria-labelledby="cveDetailsLabel"
+			aria-hidden="true">
+
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="cveDetailsLabel">CVE Details</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<div class="cve-info">
+							<h6>ID:</h6>
+							<p id="cveId"></p>
+						</div>
+
+						<div class="cve-description">
+							<h6>Description:</h6>
+							<p id="cveDescription"></p>
+						</div>
+
+						<div class="cve-dates">
+							<h6>Published Date/Last Modified:</h6>
+							<p id="cvePublishedDate"></p >
+							<span>-----</span>
+							<p id="cveModifiedDate"></p>
+						</div>
+
+						<div class="cve-status-indicator">
+							<h6>Status/Severity:</h6>
+							<p id="cveStatus"></p>
+							<span>-----</span>
+							<p id="cveSeverity"></p>
+						</div>
+
+						<div class="cve-references">
+							<h6>Weakness/Reference:</h6>
+							<p id="cveWeakness"></p>
+							<span>-----</span>
+							<p id="cveReferences"></p>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<h6>JSON:</h6>
+						<textarea name=""></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="jquery-3.7.1.min.js"></script>
+	<script src="get.js"></script>
+</html>

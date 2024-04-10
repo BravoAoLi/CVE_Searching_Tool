@@ -1,0 +1,487 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+	font-size: 14px;
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	height: 100%;
+	color: #333;
+	background-color: #fff;
+	min-width: 1240px;
+	font: 1em/1.4 'Microsoft Yahei', 'PingFang SC', 'Avenir', 'Segoe UI',
+		'Hiragino Sans GB', 'STHeiti', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei',
+		sans-serif;
+	box-sizing: border-box;
+}
+
+body,
+ul,
+h1,
+h3,
+h4,
+p,
+dl,
+dd {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+	outline: none;
+}
+
+i {
+	font-style: normal;
+}
+
+input[type='text'],
+input[type='search'],
+input[type='password'],
+input[type='checkbox'] {
+	padding: 0;
+	outline: none;
+	border: none;
+	-webkit-appearance: none;
+
+	&::placeholder {
+		color: #ccc;
+	}
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: middle;
+}
+
+ul {
+	list-style: none;
+}
+
+.container {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+header {
+	text-align: center;
+}
+
+header h2 {
+	font-size: 28px;
+}
+
+/* 搜索组件容器 */
+.search-container {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	justify-content: center;
+}
+
+.filter-options {
+	display: flex;
+	align-items: center;
+	margin-right: 10px;
+	width: 220px;
+}
+
+.filter-options label {
+	margin-right: 5px;
+}
+
+.filter-options input[type="date"],
+.filter-options select {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 100px;
+}
+
+.search-input {
+	position: relative;
+}
+
+#search-box {
+	padding: 8px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+	width: 100%;
+	min-width: 380px;
+	box-sizing: border-box;
+}
+
+/* 动态搜索建议区域 */
+#search-suggestions {
+	position: absolute;
+	top: calc(100% + 2px);
+	left: 0;
+	width: 100%;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-top: none;
+	z-index: 1;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: none;
+}
+
+#search-suggestions li {
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+#search-suggestions li:hover {
+	background-color: #f0f0f0;
+}
+
+/* 搜索按钮 */
+#search-btn {
+	padding: 8px 15px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	font-size: 14px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+#search-btn:hover {
+	background-color: #0056b3;
+}
+
+/* 显示搜索建议时的样式 */
+#search-box:focus+#search-suggestions,
+#search-box:not(:focus):valid+#search-suggestions {
+	display: block;
+}
+
+.search-suggestion-item {
+	cursor: pointer;
+}
+
+.sort-filter-options {
+	margin-bottom: 1rem;
+}
+
+.sort-filter-options label {
+	display: inline-block;
+	margin-right: 0.5rem;
+	width: 70px;
+}
+
+.sort-filter-options select {
+	appearance: none;
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
+	cursor: pointer;
+	width: 280px;
+}
+
+.date-range-filter {
+	display: flex;
+	align-items: center;
+}
+
+.date-range-filter label {
+	display: inline-block;
+	width: 140px;
+	text-align: right;
+	margin-right: 0.5rem;
+}
+
+.date-range-filter input[type="date"] {
+	padding: 0.5rem;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
+	width: 150px;
+}
+
+.filtration {
+	margin-top: 30px;
+	padding-bottom: 40px;
+}
+
+.filtration .sort-filter-options {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+table {
+	width: 100%;
+	height: 680px;
+	border-collapse: collapse;
+}
+
+table tr{
+	height: 40px;
+}
+
+th,
+td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	height: 40px;
+}
+
+th {
+	background-color: #f2f2f2;
+	font-weight: bold;
+}
+
+thead th:nth-child(1),
+tbody tr td:nth-child(1) {
+	width: 150px;
+}
+
+thead th:nth-child(2),
+tbody tr td:nth-child(2) {
+	width: 660px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+thead th:nth-child(3),
+thead th:nth-child(4),
+tbody tr td:nth-child(3),
+tbody tr td:nth-child(4) {
+	width: 195px;
+}
+
+tbody tr td:nth-child(1) {
+	cursor: pointer;
+}
+
+tbody tr td:nth-child(2) {
+	max-width: 660px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#pagination {
+	margin-top: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#prev-page,
+#next-page {
+	margin: 0 10px;
+}
+
+/* 整体模态框样式 */
+
+.modal {
+	display: none;
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.5);
+	z-index: 999;
+}
+
+
+/* 模态框标题样式 */
+
+.modal-title {
+	font-weight: bold;
+}
+
+
+/* 模态框内各项标题样式 */
+.modal .cve-info h6,
+.modal .cve-description h6,
+.modal .cve-dates h6,
+.modal .cve-status-indicator h6,
+.modal .cve-references h6,
+.modal-footer h6{
+	margin-bottom: 0.5rem;
+	font-weight: normal;
+	color: #939393;
+	font-size: 18px;
+	margin: 0;
+	display: inline-block;
+}
+
+
+/* 模态框内各段落内容样式 */
+.modal .cve-info p,
+.modal .cve-description p,
+.modal .cve-dates p,
+.modal .cve-status-indicator p,
+.modal .cve-references p {
+	margin-bottom: 0.5rem;
+}
+
+
+/* 弱点和引用列表样式 */
+.modal .cve-references ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin-top: 0.5rem;
+}
+
+
+.modal .cve-references li {
+	display: inline-block;
+	margin-right: 1rem;
+}
+
+
+.modal .cve-references a {
+	text-decoration: none;
+	color: #007bff;
+}
+
+.modal .cve-references a:hover {
+	text-decoration: underline;
+}
+
+
+/* JSON数据展示区域样式 */
+
+.json-data {
+	overflow-y: auto;
+	max-height: 300px;
+	border: 1px solid #ccc;
+	padding: 1rem;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	font-family: monospace;
+}
+
+/* 全屏模糊框样式 */
+
+.modal-dialog {
+	position: relative;
+	max-width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.modal-content {
+	background-color: rgba(255, 255, 255);
+	/* 更改为半透明白色背景 */
+	border-radius: 0.5rem;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+	/* 添加阴影以提高视觉效果 */
+	width: 90%;
+	/* 可根据需求调整宽度 */
+	max-height: calc(100% - 2rem);
+	/* 减去头部和底部的高度 */
+	overflow-y: auto;
+	/* 自动出现滚动条 */
+	padding-bottom: 40px;
+}
+
+
+/* 改善内部元素样式 */
+
+.modal-header {
+	border-bottom: none;
+	padding: 0 2rem;
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.modal-header h5{
+	font-size: 20px;
+	line-height: 20px;
+}
+
+.modal-header .close{
+	height: 24px;
+	width: 24px;
+}
+
+.modal-body {
+	padding: 0 2em;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.modal-body p{
+	display: inline-block;
+}
+
+.modal-backdrop.show {
+	backdrop-filter: blur(5px);
+	/* 模糊效果，数值可调整 */
+
+}
+
+.cve-description{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.cve-description h6{
+	width: 64px;
+}
+
+.modal-footer{
+	margin-top: 20px;
+	padding: 0 2em;
+	display: flex;
+}
+
+.modal-footer textarea{
+	margin-top: 4px;
+	width: 90%;
+	height: 200px;
+	resize:none;
+	margin-left: 20px;
+	text-align: left;
+}
+
+.cve-description,
+.cve-dates,
+.cve-status-indicator,
+.cve-references{
+	display: flex;
+	margin: 10px 0;
+}
+
+.cve-references {
+	display: flex;
+}
+
+.cve-references h6,
+.cve-description h6,
+.cve-status-indicator h6,
+.cve-references h6,
+.cve-dates h6{
+	padding-right: 10px;
+	position: relative;
+	top: -2px;
+}
